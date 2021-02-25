@@ -6,18 +6,19 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 const colors = {
   "teal": 0xBBCACB,
   "peach": 0xFEBA85,
+  "black": 0x000000,
+  "white": 0xffffff,
 }
 
 const Scene = {
   /**
    * Setup
    */
-  defaultMaterial: new THREE.MeshStandardMaterial({
-    color: colors.teal,
-  }),
+  defaultMaterial: new THREE.MeshStandardMaterial({ color: colors.teal }),
+
   camera: new THREE.PerspectiveCamera(15, window.innerWidth / window.innerHeight),
   scene: new THREE.Scene(),
-  renderer: new THREE.WebGLRenderer( { antialias: true } ),
+  renderer: new THREE.WebGLRenderer({ antialias: true, alpha: true }),
 
   get wrapperEl () {
     const el = document.getElementById("scene");
@@ -52,8 +53,6 @@ const Scene = {
           this.scene.add(gltf.scene);
         };
 
-        // not needed when running an animation loop
-        // this.render();
         console.log(`${path} loaded.`);
       },
 
@@ -127,28 +126,35 @@ const Scene = {
     this.camera.updateProjectionMatrix();
 
     this.renderer.setSize(window.innerWidth, window.innerHeight);
-
-    // not needed when running an animation loop
-    // this.render();
   },
 
   init () {
     if (!this.wrapperEl) return;
 
-    this.scene.background = new THREE.Color(colors.teal);
+    // this.scene.background = new THREE.Color(colors.teal);
 
     this.renderer.setPixelRatio(window.devicePixelRatio);
     this.renderer.setSize(window.innerWidth, window.innerHeight);
 
     this.loadMesh(`/resources/meshes/growth.gltf`);
 
-    this.camera.position.z = 50;
-
     const ambientLight = new THREE.AmbientLight(colors.teal, 0);
     this.scene.add(ambientLight);
-    const camLight = new THREE.DirectionalLight(colors.teal, 1.9, 1000);
+    const camLight = new THREE.DirectionalLight(colors.teal, 1.4, 1000);
     camLight.position.set(200, 150, 50);
     this.camera.add(camLight);
+
+    // const grainTexture = new THREE.TextureLoader().load("resources/textures/grain.png");
+    // grainTexture.wrapS = THREE.RepeatWrapping;
+    // grainTexture.wrapT = THREE.RepeatWrapping;
+    // grainTexture.repeat.set(4, 4);
+    // const grainMaterial = new THREE.MeshBasicMaterial({ map: grainTexture, transparent: true, blending: THREE.SubtractiveBlending });
+    // const grainGeometry = new THREE.PlaneBufferGeometry(10, 10);
+    // const grainFilter = new THREE.Mesh(grainGeometry, grainMaterial);
+    // this.camera.add(grainFilter);
+    // grainFilter.position.z = -10;
+
+    this.camera.position.z = 50;
     this.scene.add(this.camera);
 
     this.wrapperEl.appendChild(this.renderer.domElement);

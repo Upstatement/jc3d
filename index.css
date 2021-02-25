@@ -4,7 +4,31 @@
   margin: 0;
 }
 
-#scene {
+#texture,
+#scene,
+#tint {
   width: 100vw;
   height: 100vh;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+#texture {
+  background-color: #f5f3ed;
+  background-image: url(/resources/textures/grain.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#scene {
+  /* mix-blend-mode: soft-light; gives a different effect */
+  mix-blend-mode: color-dodge;
+}
+
+#tint {
+  background-color: #668e91;
+  mix-blend-mode: hue;
 }
