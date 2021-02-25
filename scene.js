@@ -14,36 +14,6 @@ const Scene = {
    */
   defaultMaterial: new THREE.MeshStandardMaterial({
     color: colors.teal,
-    // roughness: 1,
-    // metalness: 0,
-    // map: Texture | null,
-    // lightMap: Texture | null,
-    // lightMapIntensity: number,
-    // aoMap: Texture | null,
-    // aoMapIntensity: number,
-    // emissive: Color | string | number,
-    // emissiveIntensity: number,
-    // emissiveMap: Texture | null,
-    // bumpMap: Texture | null,
-    // bumpScale: number,
-    // normalMap: Texture | null,
-    // normalMapType: NormalMapTypes,
-    // normalScale: Vector2,
-    // displacementMap: Texture | null,
-    // displacementScale: number,
-    // displacementBias: number,
-    // roughnessMap: Texture | null,
-    // metalnessMap: Texture | null,
-    // alphaMap: Texture | null,
-    // envMap: Texture | null,
-    // envMapIntensity: number,
-    // refractionRatio: number,
-    // wireframe: boolean,
-    // wireframeLinewidth: number,
-    // skinning: boolean,
-    // vertexTangents: boolean,
-    // morphTargets: boolean,
-    // morphNormals: boolean,
   }),
   camera: new THREE.PerspectiveCamera(15, window.innerWidth / window.innerHeight),
   scene: new THREE.Scene(),
@@ -170,14 +140,14 @@ const Scene = {
     this.renderer.setPixelRatio(window.devicePixelRatio);
     this.renderer.setSize(window.innerWidth, window.innerHeight);
 
-    this.loadMesh(`/resources/meshes/pill.gltf`);
+    this.loadMesh(`/resources/meshes/growth.gltf`);
 
     this.camera.position.z = 50;
 
-    const ambientLight = new THREE.AmbientLight(colors.teal, 0.4);
+    const ambientLight = new THREE.AmbientLight(colors.teal, 0);
     this.scene.add(ambientLight);
-    const camLight = new THREE.DirectionalLight(colors.teal, 1.2, 1000);
-    camLight.position.set(100, 120, -20);
+    const camLight = new THREE.DirectionalLight(colors.teal, 1.9, 1000);
+    camLight.position.set(200, 150, 50);
     this.camera.add(camLight);
     this.scene.add(this.camera);
 
