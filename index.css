@@ -19,13 +19,13 @@
 #texture {
   background-color: #f5f3ed;
   background-image: url(/resources/textures/grain.png);
-  background-size: cover;
+  background-size: 150%;
   background-repeat: no-repeat;
 }
 
 #scene {
-  /* mix-blend-mode: soft-light; gives a different effect */
-  mix-blend-mode: color-dodge;
+  mix-blend-mode: soft-light;
+  /* mix-blend-mode: color-dodge; */
 }
 
 #tint {
